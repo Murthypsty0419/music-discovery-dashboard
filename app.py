@@ -2,17 +2,14 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Page Config
 st.set_page_config(page_title="Music Discovery Insights", layout="wide")
 
-# Centered Main Title
 st.markdown("""
     <h1 style='text-align: center; color: #89CFF0;'>
         🎼 Music Discovery Database Insights Dashboard 
     </h1>
 """, unsafe_allow_html=True)
 
-# Abstract / Problem Statement
 st.markdown("""
     <div style='text-align: center; font-size:18px; padding:10px;'>
         Music streaming platforms often reinforce mainstream artists through popularity-based algorithms, limiting the discovery of hidden musical talents. 
@@ -21,7 +18,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Load CSVs
 streams_platform = pd.read_csv('total_streams_per_platform.csv')
 revenue_platform = pd.read_csv('revenue_per_platform.csv')
 listeners_country = pd.read_csv('listeners_per_country.csv')
@@ -33,9 +29,8 @@ top_songs_streams = pd.read_csv('top_songs_by_streams.csv')
 avg_revenue_platform = pd.read_csv('avg_revenue_per_stream_by_platform.csv')
 top_artists_streams = pd.read_csv('top_artists_by_streams.csv')
 
-# --- First Row (centered 2 plots)
 
-st.write("")  # gap
+st.write("") 
 col1, spacer, col2 = st.columns([2, 0.5, 2])
 
 with col1:
@@ -52,9 +47,8 @@ with col2:
     st.plotly_chart(fig2, use_container_width=True)
     st.markdown("Revenue distribution varies slightly among top platforms, indicating some platforms are financially more rewarding per stream.")
 
-# --- Second Row (3 plots)
 
-st.write("")  # gap
+st.write("")  
 col3, col4, col5 = st.columns(3)
 
 with col3:
@@ -75,9 +69,8 @@ with col5:
     st.plotly_chart(fig5, use_container_width=True)
     st.markdown("A few top artists generate significant revenue, showcasing the importance of hit songs and loyal listener bases.")
 
-# --- Third Row (centered 2 plots)
 
-st.write("")  # gap
+st.write("") 
 col6, spacer, col7 = st.columns([2, 0.5, 2])
 
 with col6:
@@ -93,9 +86,8 @@ with col7:
     st.plotly_chart(fig7, use_container_width=True)
     st.markdown("Some genres consistently maintain higher average popularity, reflecting stable listener loyalty.")
 
-# --- Fourth Row (3 plots)
 
-st.write("")  # gap
+st.write("")  
 col8, col9, col10 = st.columns(3)
 
 with col8:
@@ -117,6 +109,3 @@ with col10:
     fig10 = px.bar(top_artists_sorted, x='total_streams', y='artist_name', orientation='h', color='artist_name', color_discrete_sequence=px.colors.sequential.YlOrRd)
     st.plotly_chart(fig10, use_container_width=True)
     st.markdown("Stream counts reveal the most in-demand artists, reflecting both popularity and marketing success.")
-
-# Footer
-st.caption("Created with ❤️ using Streamlit and Plotly")
